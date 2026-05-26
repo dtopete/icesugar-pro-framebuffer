@@ -33,6 +33,10 @@ To run the container while mounting your current project directory workspace, ex
 ```bash
 docker run -it -v ./:/myprojects cs122a-build-env /bin/bash
 
+or  (more luck running below)
+
+docker run -it --rm --entrypoint /bin/bash -v "$PWD":/myprojects cs122a-build-env
+
 ```
 
 ### Building the Project
@@ -44,9 +48,19 @@ git submodule update --init --recursive
 
 ```
 
-Once the submodules are fully downloaded, return to the project root directory and initialize the CMake build system:
+Before running CMake, make sure the Pico SDK is available and set `PICO_SDK_PATH` to the directory that contains `pico_sdk_init.cmake`.
+For example, if you installed the SDK under your home directory:
 
 ```bash
+export PICO_SDK_PATH="$HOME/.pico-sdk/sdk/2.2.0"
+```
+
+If you installed the SDK elsewhere, replace the path above with the directory containing `pico_sdk_init.cmake`.
+
+Once the submodules are fully downloaded and the SDK path is exported, return to the project root directory and initialize the CMake build system:
+
+```bash
+rm -rf build // If it isn't working
 mkdir build
 cmake -B build -S .
 
