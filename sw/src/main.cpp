@@ -60,19 +60,10 @@ int main(void) {
 	cyw43_arch_init();
     adc_init();
 
-<<<<<<< HEAD
     ucr::bcoe::SPIDisplay spi_display(480, 272, 5000000, 20);
     spi_display.begin();
     spi_display.clear();
 
     ucr::bcoe::cs::cs122::LVGL_ChannelMonitor app(&spi_display, cs122_flush_cb_partial, cs122_get_millis);
-=======
-    ucr::bcoe::SPIDisplay spi_display(480, 272, 10000000, 20);
-	spi_display.begin();
-	spi_display.clear();
-
-    ucr::bcoe::cs::cs122::LVGL_DemoWidgets app(&spi_display, cs122_flush_cb_partial, cs122_get_millis);
-    touch_init(26, 21, 27, 22);
->>>>>>> refs/remotes/origin/main
     app.run();
 }
