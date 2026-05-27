@@ -1,11 +1,12 @@
-#include "lvgl_channel_monitor.h"
+t #include "lvgl_channel_monitor.h"
 #include "lv_conf.h"
 #include <lvgl.h>
 
 namespace ucr { namespace bcoe { namespace cs { namespace cs122 {
 
-static const char *channel_names[8] = {
-    "CH1", "CH2", "CH3", "CH4", "CH5", "CH6", "CH7", "CH8"
+static const char *channel_names[16] = {
+    "RtEvon", "LtEvon", "CH3", "CH4", "CH5", "CH6", "CH7", "CH8",
+    "CH9", "CH10", "CH11", "CH12", "CH13", "CH14", "CH15", "CH16"
 };
 
 void LVGL_ChannelMonitor::setChannelValue(int index, int value) {
@@ -50,8 +51,8 @@ void LVGL_ChannelMonitor::create_ui() {
         lv_obj_set_style_pad_all(column, 0, LV_PART_MAIN);
         lv_obj_set_style_pad_row(column, 6, LV_PART_MAIN);
 
-        for (int row = 0; row < 4; ++row) {
-            int index = col * 4 + row;
+        for (int row = 0; row < 8; ++row) {
+            int index = col * 8 + row;
             lv_obj_t *row_cont = lv_obj_create(column);
             lv_obj_set_size(row_cont, lv_pct(100), 30);
             lv_obj_set_style_bg_opa(row_cont, LV_OPA_TRANSP, LV_PART_MAIN);
@@ -71,6 +72,7 @@ void LVGL_ChannelMonitor::create_ui() {
             channel_bars[index] = lv_bar_create(row_cont);
             lv_obj_set_size(channel_bars[index], 120, 16);
             lv_bar_set_range(channel_bars[index], -100, 100);
+            lv_bar_set_mode(channel_bars[index], LV_BAR_MODE_SYMMETRICAL);
             lv_bar_set_value(channel_bars[index], 0, LV_ANIM_OFF);
             lv_obj_set_style_bg_color(channel_bars[index], lv_color_hex(0x202020), LV_PART_MAIN);
             lv_obj_set_style_bg_opa(channel_bars[index], LV_OPA_COVER, LV_PART_MAIN);
