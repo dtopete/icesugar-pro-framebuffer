@@ -19,6 +19,7 @@ add_executable(cs122_demo
      src/spi_display.cpp
      src/cs122_app.cpp
      src/lvgl_clock.cpp
+     src/lvgl_channel_monitor.cpp
      src/lvgl_pie_chart.cpp
      src/lvgl_compass.cpp
      src/lvgl_arc_label.cpp

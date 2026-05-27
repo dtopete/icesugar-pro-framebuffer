@@ -1,6 +1,6 @@
 
 #include "spi_display.h"
-#include "lvgl_clock.h"
+#include "lvgl_channel_monitor.h"
 #include "lv_conf.h"
 
 #include <lvgl.h>
@@ -58,9 +58,9 @@ int main(void) {
 	cyw43_arch_init();
 
     ucr::bcoe::SPIDisplay spi_display(480, 272, 5000000, 20);
-	spi_display.begin();
-	spi_display.clear();
+    spi_display.begin();
+    spi_display.clear();
 
-    ucr::bcoe::cs::cs122::LVGL_Clock app(&spi_display, cs122_flush_cb_partial, cs122_get_millis);
+    ucr::bcoe::cs::cs122::LVGL_ChannelMonitor app(&spi_display, cs122_flush_cb_partial, cs122_get_millis);
     app.run();
 }
