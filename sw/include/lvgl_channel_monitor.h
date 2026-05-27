@@ -12,7 +12,7 @@ namespace ucr { namespace bcoe { namespace cs { namespace cs122 {
         void setChannelValue(int index, int value);
 
     private:
-        static constexpr int CHANNEL_COUNT = 16;
+        static constexpr int CHANNEL_COUNT = 8;
 
         int channel_values[CHANNEL_COUNT] = {0};
         lv_obj_t *channel_value_labels[CHANNEL_COUNT];
